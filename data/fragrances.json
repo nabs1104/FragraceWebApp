@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Dior Sauvage",
+    "brand": "Dior",
+    "price": 120,
+    "image": "https://i5.walmartimages.com/seo/Christian-Dior-Men-s-Sauvage-Parfum-6-8-oz-200-ml_75a1b8d6-794b-4dc5-a4b8-9a4c160e90cf.f05d2f24762b8877a0f4e68d48311b1a.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "Bleu de Chanel",
+    "brand": "Chanel",
+    "price": 135,
+    "image": "https://static.sweetcare.com/img/prd/max/v-638562969898993132/chanel-008572cl_01.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Acqua di Gio",
+    "brand": "Giorgio Armani",
+    "price": 110,
+    "image": "https://fimgs.net/mdimg/perfume/o.410.jpg"
+  }
+]
