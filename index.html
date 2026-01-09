@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fragrance</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <input type="text" placeholder="Search a fragrance..." class="search">
-        <button class="search">
-            <img src="resources/search-button.svg" width="20" height="20" alt="Search Icon">
-        </button>
-    </nav>
+    <header class="header">
+        <nav class="navbar">
+            <li class="nav-items">
+                <input type="text" placeholder="Search a fragrance..." class="search">
+            </li>   
+        </nav>
+    </header>
+    <main class="main-content">
+        <section class="fragrance-list">
+            <!-- Fragrance items will be dynamically inserted here -->
+        </section>
+    </main>
+
+    <footer class="footer"></footer>
+    <script src="scripts/app.js"></script>
 </body>
 </html>

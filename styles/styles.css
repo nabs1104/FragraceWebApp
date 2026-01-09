@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Bodoni Moda', serif;
+    font-size: 12px;
+}
+
+.nav-items {
+    display: flex;
+    list-style: none;
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding : 15px 10px;
+    background-color: #ffffff;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #ccc;
+}
+
+.search {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    width: 100%;
+}
+
+.fragrance-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
