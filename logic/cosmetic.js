@@ -1,3 +1,5 @@
+//apply shadow to header on scroll
+
 export function addShadow() {
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {

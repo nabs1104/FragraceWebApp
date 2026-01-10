@@ -1,17 +1,26 @@
+//import necessary modules and functions
+
 import { fetchFragrances } from "./api.js";
 import { addShadow } from "./cosmetic.js";
 import {filterBySearch, filterByBrand} from "./filters.js";
 import { sortByPriceAsc, sortByPriceDesc, sortByNameAsc } from "./utils.js"; 
 
+
 addShadow();
+
+//get DOM elements
 
 const searchInput = document.querySelector('.search');
 const brandSelect = document.querySelector('.filter');
 const sortSelect = document.querySelector('.sort');
 const fragranceList = document.querySelector('.fragrance-list');
 
+//initialize state variables
+
 let allFragrances = [];
 let displayedFragrances = [];
+
+//initialize application
 
 async function initApp() {
     allFragrances = await fetchFragrances();
@@ -20,6 +29,8 @@ async function initApp() {
     populateBrands(allFragrances);
     renderFrangrances(displayedFragrances);
 }
+
+//render fragrances to the DOM
 
 function renderFrangrances(fragrances) {
     fragranceList.innerHTML = '';
@@ -43,6 +54,8 @@ function renderFrangrances(fragrances) {
     });
 }
 
+//populate brand filter options
+
 function populateBrands(fragrances) {
     const brands = [...new Set(fragrances.map(f => f.brand))].sort();
     const brandSelect = document.querySelector('.filter');
@@ -54,6 +67,8 @@ function populateBrands(fragrances) {
         brandSelect.appendChild(option);
     });
 }
+
+//event listeners for filters and sorting
 
 searchInput.addEventListener('input', () => {
     applyFilters();
@@ -67,6 +82,7 @@ sortSelect.addEventListener('change', () => {
     applySorting();
 });
 
+//functions to apply filters and sorting
 
 function applyFilters() {
     let result = [...allFragrances];
@@ -92,5 +108,7 @@ function applySorting() {
 
     renderFrangrances(result);
 }
+
+//initialize the app on page load
 
 initApp();

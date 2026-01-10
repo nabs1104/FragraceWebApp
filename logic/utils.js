@@ -1,3 +1,5 @@
+//utility functions for sorting fragrances
+
 export function sortByPriceAsc(fragrances) {
     return [...fragrances].sort((a, b) => a.price - b.price);
 }

@@ -1,3 +1,5 @@
+//filter by search term and/or brand
+
 export function filterBySearch(fragrances, searchTerm) {
     return fragrances.filter(f => 
         f.name.toLowerCase().includes(searchTerm.toLowerCase())
