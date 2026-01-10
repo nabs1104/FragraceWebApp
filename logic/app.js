@@ -1,14 +1,24 @@
 import { fetchFragrances } from "./api.js";
 import { addShadow } from "./cosmetic.js";
+import {filterBySearch, filterByBrand} from "./filters.js";
+import { sortByPriceAsc, sortByPriceDesc, sortByNameAsc } from "./utils.js"; 
 
 addShadow();
 
+const searchInput = document.querySelector('.search');
+const brandSelect = document.querySelector('.filter');
+const sortSelect = document.querySelector('.sort');
 const fragranceList = document.querySelector('.fragrance-list');
 
+let allFragrances = [];
+let displayedFragrances = [];
 
 async function initApp() {
-    const fragrances = await fetchFragrances();
-    renderFrangrances(fragrances);
+    allFragrances = await fetchFragrances();
+    displayedFragrances = [...allFragrances];
+
+    populateBrands(allFragrances);
+    renderFrangrances(displayedFragrances);
 }
 
 function renderFrangrances(fragrances) {
@@ -31,6 +41,56 @@ function renderFrangrances(fragrances) {
         `;
         fragranceList.appendChild(fragranceItem);
     });
+}
+
+function populateBrands(fragrances) {
+    const brands = [...new Set(fragrances.map(f => f.brand))].sort();
+    const brandSelect = document.querySelector('.filter');
+
+    brands.forEach(b => {
+        const option = document.createElement('option');
+        option.value = b;
+        option.textContent = b;
+        brandSelect.appendChild(option);
+    });
+}
+
+searchInput.addEventListener('input', () => {
+    applyFilters();
+});
+
+brandSelect.addEventListener('change', () => {
+    applyFilters();
+});
+
+sortSelect.addEventListener('change', () => {
+    applySorting();
+});
+
+
+function applyFilters() {
+    let result = [...allFragrances];
+
+    result = filterByBrand(result, brandSelect.value);
+    result = filterBySearch(result, searchInput.value);
+
+    displayedFragrances = result;
+    applySorting();
+}
+
+function applySorting() {
+    let result = [...displayedFragrances];
+
+    switch (sortSelect.value) {
+        case 'priceLowToHigh':
+            result = sortByPriceAsc(result);
+        case 'priceHighToLow':
+            result = sortByPriceDesc(result);
+        case 'nameAZ':
+            result = sortByNameAsc(result);
+    }
+
+    renderFrangrances(result);
 }
 
 initApp();
