@@ -14,6 +14,8 @@ const searchInput = document.querySelector('.search');
 const brandSelect = document.querySelector('.filter');
 const sortSelect = document.querySelector('.sort');
 const fragranceList = document.querySelector('.fragrance-list');
+const main = document.querySelector('.main-content');
+
 
 //initialize state variables
 
@@ -34,6 +36,22 @@ async function initApp() {
 
 function renderFrangrances(fragrances) {
     fragranceList.innerHTML = '';
+
+    //handle no results case
+    if (fragrances.length === 0) {
+        const noResults = document.createElement('div');
+
+        noResults.innerHTML = `
+            <div class="no-results">
+                No fragrances found matching your criteria.
+                <button class="reset-filters">Reset Filters</button>
+            </div>
+        `;
+        main.appendChild(noResults);
+
+        resetContent();
+        return;
+    }
 
     fragrances.forEach(fragrance => {
         const fragranceItem = document.createElement('div');
@@ -57,6 +75,7 @@ function renderFrangrances(fragrances) {
 //populate brand filter options
 
 function populateBrands(fragrances) {
+    // map to a set to remove duplicates, then back to array and sort
     const brands = [...new Set(fragrances.map(f => f.brand))].sort();
     const brandSelect = document.querySelector('.filter');
 
@@ -70,8 +89,12 @@ function populateBrands(fragrances) {
 
 //event listeners for filters and sorting
 
-searchInput.addEventListener('input', () => {
-    applyFilters();
+searchInput.addEventListener('keydown', (e) => {
+    //apply filters on Enter key press
+
+    if (e.key === 'Enter') {
+        applyFilters();
+    }
 });
 
 brandSelect.addEventListener('change', () => {
@@ -82,7 +105,19 @@ sortSelect.addEventListener('change', () => {
     applySorting();
 });
 
-//functions to apply filters and sorting
+
+function resetContent() {
+    const resetButton = document.querySelector('.reset-filters');
+
+    resetButton.addEventListener('click', () => {
+        //reset filters and re-render all fragrances
+        main.removeChild(main.lastChild);
+        searchInput.value = null;
+        brandSelect.value = "";
+        sortSelect.value = "";
+        applyFilters();
+    });
+}
 
 function applyFilters() {
     let result = [...allFragrances];

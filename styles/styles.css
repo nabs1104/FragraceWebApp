@@ -39,6 +39,10 @@
     width: 75%;
 }
 
+::placeholder {
+    color: black
+}
+
 /* fragrance list styles */
 
 .fragrance-list {
@@ -121,3 +125,12 @@ label {
     font-size: 12px;
     min-width: 50px;
 }
+
+/* no results message */
+
+.no-results {
+  text-align: center;
+  font-size: 12px;
+  padding: 40px 0;
+}
+
