@@ -40,6 +40,14 @@ function renderFrangrances(fragrances) {
     //handle no results case
     if (fragrances.length === 0) {
         const noResults = document.createElement('div');
+        noResults.classList.add('no-results-container');
+
+        console.log(main.lastElementChild);
+
+        if (main.lastElementChild.classList.contains('no-results-container')) {
+            console.log("No results message already displayed");
+            return; //no need to add another no results message
+        }
 
         noResults.innerHTML = `
             <div class="no-results">
@@ -47,6 +55,7 @@ function renderFrangrances(fragrances) {
                 <button class="reset-filters">Reset Filters</button>
             </div>
         `;
+
         main.appendChild(noResults);
 
         resetContent();
