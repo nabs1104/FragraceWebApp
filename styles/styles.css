@@ -11,6 +11,16 @@
 
 /* navbar styles */
 
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0px 0px 0px;
+    font-size: 30px;
+    font-weight: 700;
+    color:rgb(28, 14, 85)
+}
+
 .header {
     position: sticky;
     z-index: 1000;
@@ -133,4 +143,6 @@ label {
   font-size: 12px;
   padding: 40px 0;
 }
+
+
 
